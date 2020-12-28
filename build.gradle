@@ -49,16 +49,20 @@ dependencies {
 jacocoTestReport {
     reports {
         xml.enabled true
-        xml.destination file("${buildDir}/reports/jacoco/report.xml")
+//        xml.destination file("${buildDir}/reports/jacoco/report.xml")
         html.enabled false
         csv.enabled false
     }
 }
 
+
 test {
     useJUnitPlatform()
+
 }
 
 bootJar {
     archiveFileName = "${project.name}.jar"
 }
+
+check.dependsOn jacocoTestReport
