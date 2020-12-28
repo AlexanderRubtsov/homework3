@@ -1,5 +1,7 @@
 package ru.digitalhabbits.homework3.service;
 
+import ru.digitalhabbits.homework3.domain.Person;
+import ru.digitalhabbits.homework3.model.PersonInfo;
 import ru.digitalhabbits.homework3.model.PersonRequest;
 import ru.digitalhabbits.homework3.model.PersonResponse;
 
@@ -10,6 +12,8 @@ public interface PersonService {
 
     @Nonnull
     List<PersonResponse> findAllPersons();
+
+    PersonInfo buildPersonInfo(Person person);
 
     @Nonnull
     PersonResponse getPerson(@Nonnull Integer id);

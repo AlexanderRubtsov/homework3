@@ -1,5 +1,7 @@
 package ru.digitalhabbits.homework3.service;
 
+import ru.digitalhabbits.homework3.domain.Department;
+import ru.digitalhabbits.homework3.model.DepartmentInfo;
 import ru.digitalhabbits.homework3.model.DepartmentRequest;
 import ru.digitalhabbits.homework3.model.DepartmentResponse;
 import ru.digitalhabbits.homework3.model.DepartmentShortResponse;
@@ -8,6 +10,8 @@ import javax.annotation.Nonnull;
 import java.util.List;
 
 public interface DepartmentService {
+
+    DepartmentInfo buildDepartmentInfo(Department department);
 
     @Nonnull
     List<DepartmentShortResponse> findAllDepartments();

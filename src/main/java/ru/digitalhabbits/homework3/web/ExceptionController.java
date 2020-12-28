@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import ru.digitalhabbits.homework3.exceptions.DepartmentClosedException;
 import ru.digitalhabbits.homework3.model.ErrorResponse;
 
 import javax.persistence.EntityNotFoundException;
@@ -25,6 +26,15 @@ public class ExceptionController {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(EntityNotFoundException.class)
     public ErrorResponse error(EntityNotFoundException exception) {
+        return new ErrorResponse(exception.getMessage());
+    }
+
+    @ApiResponse(responseCode = "409",
+            description = "Department was closed",
+            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(DepartmentClosedException.class)
+    public ErrorResponse error(DepartmentClosedException exception) {
         return new ErrorResponse(exception.getMessage());
     }
 

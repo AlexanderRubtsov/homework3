@@ -3,10 +3,7 @@ package ru.digitalhabbits.homework3.domain;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @Accessors(chain = true)
@@ -15,6 +12,8 @@ import javax.persistence.Table;
 public class Person {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
     @Column(nullable = false, length = 80)
@@ -28,4 +27,20 @@ public class Person {
 
     @Column
     private Integer age;
+
+    @ManyToOne
+    @JoinColumn (name = "department")
+    private Department department;
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", department=" + department.getName() +
+                '}';
+    }
 }

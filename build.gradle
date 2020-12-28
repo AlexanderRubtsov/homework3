@@ -10,6 +10,7 @@ ext {
     openApiVersion = "1.4.8"
     fingBugsVersion = "3.0.2"
     lombokVersion = "1.18.2"
+    gsonVersion = "2.8.5"
 }
 
 sourceCompatibility = 1.11
@@ -40,8 +41,9 @@ dependencies {
     compileOnly "org.projectlombok:lombok:${lombokVersion}"
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
-    testImplementation "com.h2database:h2"
+    implementation "com.h2database:h2"
     testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testImplementation "com.google.code.gson:gson:${gsonVersion}"
 }
 
 jacocoTestReport {
