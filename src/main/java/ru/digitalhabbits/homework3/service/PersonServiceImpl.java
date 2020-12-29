@@ -27,7 +27,6 @@ public class PersonServiceImpl implements PersonService {
     @Nonnull
     @Override
     public List<PersonResponse> findAllPersons() {
-        // TODO: NotImplemented: получение информации о всех людях во всех отделах
         return personDao.findAll().stream().map(this::buildPersonResponse).collect(Collectors.toList());
 
     }
@@ -44,7 +43,6 @@ public class PersonServiceImpl implements PersonService {
     @Nonnull
     @Override
     public PersonResponse getPerson(@Nonnull Integer id) {
-        // TODO: NotImplemented: получение информации о человеке. Если не найдено, отдавать 404:NotFound
         Person person = personDao.findById(id);
         if (person == null) throw new EntityNotFoundException("Не найден person с id: " + id);
         return buildPersonResponse(person);
@@ -53,7 +51,6 @@ public class PersonServiceImpl implements PersonService {
     @Nonnull
     @Override
     public Integer createPerson(@Nonnull PersonRequest request) {
-        // TODO: NotImplemented: создание новой записи о человеке
         Person person = new Person()
                 .setAge(request.getAge())
                 .setFirstName(request.getFirstName())
@@ -66,7 +63,6 @@ public class PersonServiceImpl implements PersonService {
     @Nonnull
     @Override
     public PersonResponse updatePerson(@Nonnull Integer id, @Nonnull PersonRequest request) {
-        // TODO: NotImplemented: обновление информации о человеке. Если не найдено, отдавать 404:NotFound
         Person person = personDao.findById(id);
         if (person == null) throw new EntityNotFoundException("Не найден person с id: " + id);
         person.setAge(request.getAge())
@@ -84,7 +80,6 @@ public class PersonServiceImpl implements PersonService {
         newPersonList.remove(person);
         person.getDepartment().setPersonList(newPersonList);
         personDao.delete(person.getId());
-        // TODO: NotImplemented: удаление информации о человеке и удаление его из отдела. Если не найдено, ничего не делать
 
     }
 

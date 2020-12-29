@@ -49,7 +49,7 @@ class PersonDaoTest {
         entityManager.clear();
         Person actual = personDao.findById(person1.getId());
         assertEquals(actual, person1);
-        // TODO: NotImplemented
+
     }
 
     @Test
@@ -61,7 +61,7 @@ class PersonDaoTest {
         entityManager.clear();
         List<Person> actual = personDao.findAll();
         assertEquals(expected,actual);
-        // TODO: NotImplemented
+
     }
 
     @Test
@@ -74,7 +74,7 @@ class PersonDaoTest {
         entityManager.clear();
         Person actual = personDao.findById(person1.getId());
         assertEquals(person1, actual);
-        // TODO: NotImplemented
+
     }
 
     @Test
@@ -88,6 +88,6 @@ class PersonDaoTest {
         Person actual = personDao.findById(person1.getId());
         assertNotNull(oldPerson);
         assertNull(actual);
-        // TODO: NotImplemented
+
     }
 }

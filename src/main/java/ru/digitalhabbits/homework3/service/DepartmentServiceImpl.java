@@ -52,9 +52,6 @@ public class DepartmentServiceImpl
         if (department == null) throw new EntityNotFoundException("Не найден департамент с id: " + id);
         return buildDepartmentResponse(department);
 
-        // TODO: NotImplemented: получение подробной информации о департаменте и краткой информации о людях в нем.
-        //  Если не найдено, отдавать 404:NotFound
-
     }
 
     private DepartmentResponse buildDepartmentResponse(Department department) {
@@ -72,7 +69,6 @@ public class DepartmentServiceImpl
     @Nonnull
     @Override
     public Integer createDepartment(@Nonnull DepartmentRequest request) {
-        // TODO: NotImplemented: создание нового департамента
         Department department = new Department()
                 .setName(request.getName())
                 .setClosed(false);
@@ -84,7 +80,7 @@ public class DepartmentServiceImpl
     @Nonnull
     @Override
     public DepartmentResponse updateDepartment(@Nonnull Integer id, @Nonnull DepartmentRequest request) {
-        // TODO: NotImplemented: обновление данных о департаменте. Если не найдено, отдавать 404:NotFound
+
         Department department = departmentDao.findById(id);
         if (department == null) throw new EntityNotFoundException("Не найден департамент с id: " + id);
         department.setName(request.getName());
@@ -98,8 +94,6 @@ public class DepartmentServiceImpl
         if (department == null) return;
         department.setPersonList(null);
         departmentDao.delete(department.getId());
-        // TODO: NotImplemented: удаление всех людей из департамента и удаление самого департамента.
-        //  Если не найдено, то ничего не делать
     }
 
     @Override
@@ -114,9 +108,6 @@ public class DepartmentServiceImpl
         newPersonList.add(person);
         department.setPersonList(newPersonList);
         departmentDao.update(department);
-        // TODO: NotImplemented: добавление нового человека в департамент.
-        //  Если не найден человек или департамент, отдавать 404:NotFound.
-        //  Если департамент закрыт, то отдавать 409:Conflict
     }
 
     @Override
@@ -130,14 +121,10 @@ public class DepartmentServiceImpl
         newPersonList.remove(person);
         department.setPersonList(newPersonList);
         departmentDao.update(department);
-        // TODO: NotImplemented: удаление человека из департамента.
-        //  Если департамент не найден, отдавать 404:NotFound, если не найден человек в департаменте, то ничего не делать
     }
 
     @Override
     public void closeDepartment(@Nonnull Integer id) {
-        // TODO: NotImplemented: удаление всех людей из департамента и установка отметки на департаменте,
-        //  что он закрыт для добавления новых людей. Если не найдено, отдавать 404:NotFound
         Department department = departmentDao.findById(id);
         if (department == null) throw new EntityNotFoundException("Не найден департамент с id: " + id);
         department.setPersonList(null);

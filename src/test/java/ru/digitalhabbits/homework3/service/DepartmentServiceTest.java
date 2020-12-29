@@ -87,7 +87,6 @@ class DepartmentServiceTest {
 
     @Test
     void updateDepartment() {
-        // TODO: NotImplemented
         List<Person> people = List.of(new Person().setAge(10).setFirstName("Petr").setLastName("Petrov").setId(10));
         Department department = new Department().setId(1).setName("First Department").setClosed(false).setPersonList(people);
         when(departmentDao.findById(1)).thenReturn(department);
@@ -122,7 +121,6 @@ class DepartmentServiceTest {
         verify(departmentDao, times(1)).findById(1);
         verify(departmentDao, times(1)).delete(1);
         assertNull(department.getPersonList());
-        // TODO: NotImplemented
     }
 
     @Test
@@ -188,7 +186,6 @@ class DepartmentServiceTest {
 
     @Test
     void closeDepartment() {
-        // TODO: NotImplemented
         Person person = new Person().setAge(20).setFirstName("Petr").setLastName("Petrov").setId(10);
         List<Person> personList = List.of(new Person().setAge(30).setFirstName("Ivan").setLastName("Ivanov").setId(20), person);
         Department department = new Department().setId(1).setName("First Department").setClosed(false).setPersonList(personList);
@@ -205,7 +202,6 @@ class DepartmentServiceTest {
 
     @Test
     void closeDepartmentNotFound() {
-        // TODO: NotImplemented
         when(departmentDao.findById(1)).thenReturn(null);
         EntityNotFoundException departmentNotFound = assertThrows(EntityNotFoundException.class,
                 () -> departmentService.closeDepartment(1),

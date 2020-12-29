@@ -44,12 +44,19 @@ dependencies {
     implementation "com.h2database:h2"
     testImplementation "org.springframework.boot:spring-boot-starter-test"
     testImplementation "com.google.code.gson:gson:${gsonVersion}"
+    testImplementation "org.jacoco:org.jacoco.agent:0.8.5"
 }
 
-jacocoTestReport {
+task codeCoverageReport(type: JacocoReport) {
+    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+
+    subprojects.each {
+        sourceSets it.sourceSets.main
+    }
+
     reports {
         xml.enabled true
-//        xml.destination file("${buildDir}/reports/jacoco/report.xml")
+        xml.destination file("${buildDir}/reports/jacoco/report.xml")
         html.enabled false
         csv.enabled false
     }
