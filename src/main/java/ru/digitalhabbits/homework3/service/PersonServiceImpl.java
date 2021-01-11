@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.digitalhabbits.homework3.dao.PersonDao;
 import ru.digitalhabbits.homework3.domain.Person;
+import ru.digitalhabbits.homework3.model.DepartmentInfo;
 import ru.digitalhabbits.homework3.model.PersonInfo;
 import ru.digitalhabbits.homework3.model.PersonRequest;
 import ru.digitalhabbits.homework3.model.PersonResponse;
@@ -84,9 +85,13 @@ public class PersonServiceImpl implements PersonService {
     }
 
     private PersonResponse buildPersonResponse(Person person) {
+        DepartmentInfo departmentInfo;
+        if (person.getDepartment() != null) {
+            departmentInfo = departmentService.buildDepartmentInfo(person.getDepartment());
+        } else departmentInfo = null;
         return new PersonResponse()
                 .setAge(person.getAge())
-                .setDepartment(departmentService.buildDepartmentInfo(person.getDepartment()))
+                .setDepartment(departmentInfo)
                 .setId(person.getId())
                 .setFullName(getFullName(person));
 

@@ -107,6 +107,8 @@ public class DepartmentServiceImpl
         List<Person> newPersonList = new ArrayList<>(immutablePersonList);
         newPersonList.add(person);
         department.setPersonList(newPersonList);
+        person.setDepartment(department);
+        personDao.update(person);
         departmentDao.update(department);
     }
 
@@ -121,6 +123,8 @@ public class DepartmentServiceImpl
         newPersonList.remove(person);
         department.setPersonList(newPersonList);
         departmentDao.update(department);
+        person.setDepartment(null);
+        personDao.update(person);
     }
 
     @Override
