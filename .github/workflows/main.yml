@@ -44,4 +44,4 @@ jobs:
         with:
           build-root-directory: integration-tests
           # TODO set Heroku service url
-          arguments: clean test -PtargetUrl=https://dashboard.heroku.com/apps/homework-3-digital
+          arguments: clean test -PtargetUrl=https://homework-3-digital.herokuapp.com/
