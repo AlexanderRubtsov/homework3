@@ -48,12 +48,12 @@ class PersonServiceTest {
             assertEquals(departmentInfo, firstPersonResponse.getDepartment());
             assertEquals(30, firstPersonResponse.getAge());
             assertEquals(20, firstPersonResponse.getId());
-            assertEquals("Ivanov Ivan Ivanovich", firstPersonResponse.getFullName());
+            assertEquals("Ivan Ivanovich Ivanov", firstPersonResponse.getFullName());
 
             assertEquals(departmentInfo, secondPersonResponse.getDepartment());
             assertEquals(20, secondPersonResponse.getAge());
             assertEquals(10, secondPersonResponse.getId());
-            assertEquals("Petrov Petr Petrovich", secondPersonResponse.getFullName());
+            assertEquals("Petr Petrovich Petrov", secondPersonResponse.getFullName());
         });
     }
 
@@ -70,7 +70,7 @@ class PersonServiceTest {
             assertEquals(departmentInfo, personResponse.getDepartment());
             assertEquals(30, personResponse.getAge());
             assertEquals(20, personResponse.getId());
-            assertEquals("Ivanov Ivan Ivanovich", personResponse.getFullName());
+            assertEquals("Ivan Ivanovich Ivanov", personResponse.getFullName());
         });
     }
 
@@ -110,7 +110,7 @@ class PersonServiceTest {
             assertEquals(departmentInfo, personResponse.getDepartment());
             assertEquals(20, personResponse.getAge());
             assertEquals(10, personResponse.getId());
-            assertEquals("Petrov Petr Petrovich", personResponse.getFullName());
+            assertEquals("Petr Petrovich Petrov", personResponse.getFullName());
         });
 
     }
@@ -143,7 +143,7 @@ class PersonServiceTest {
         PersonInfo personInfo = personService.buildPersonInfo(person);
         assertAll(()->{
             assertEquals(1,personInfo.getId());
-            assertEquals("Ivanov Ivan Ivanovich",personInfo.getFullName());
+            assertEquals("Ivan Ivanovich Ivanov",personInfo.getFullName());
         });
 
     }
