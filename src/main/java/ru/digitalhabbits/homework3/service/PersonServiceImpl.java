@@ -77,9 +77,11 @@ public class PersonServiceImpl implements PersonService {
     public void deletePerson(@Nonnull Integer id) {
         Person person = personDao.findById(id);
         if (person == null) return;
-        List<Person> newPersonList = new ArrayList<>(person.getDepartment().getPersonList());
-        newPersonList.remove(person);
-        person.getDepartment().setPersonList(newPersonList);
+        if (person.getDepartment() != null) {
+            List<Person> newPersonList = new ArrayList<>(person.getDepartment().getPersonList());
+            newPersonList.remove(person);
+            person.getDepartment().setPersonList(newPersonList);
+        }
         personDao.delete(person.getId());
 
     }
@@ -101,6 +103,6 @@ public class PersonServiceImpl implements PersonService {
         String lastName = person.getLastName();
         String firstName = person.getFirstName();
         String middleName = person.getMiddleName();
-        return lastName + " " + firstName + " " + middleName;
+        return firstName + " " + middleName + " " + lastName;
     }
 }

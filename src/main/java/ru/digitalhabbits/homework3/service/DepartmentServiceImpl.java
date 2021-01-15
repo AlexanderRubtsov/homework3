@@ -131,6 +131,11 @@ public class DepartmentServiceImpl
     public void closeDepartment(@Nonnull Integer id) {
         Department department = departmentDao.findById(id);
         if (department == null) throw new EntityNotFoundException("Не найден департамент с id: " + id);
+        List<Person> personList = department.getPersonList();
+        for (Person person: personList) {
+            person.setDepartment(null);
+            personDao.update(person);
+        }
         department.setPersonList(null);
         department.setClosed(true);
         departmentDao.update(department);
